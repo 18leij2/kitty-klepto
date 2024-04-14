@@ -123,6 +123,42 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &14877774
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 14877775}
+  m_Layer: 5
+  m_Name: QTE Arrows
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &14877775
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14877774}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1469982461}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &105005499
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,12 +278,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 266889589}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4707955, y: 0.87677073, z: 1.1149}
+  m_LocalScale: {x: 0.47079554, y: 0.87677073, z: 1.1149001}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1469982461}
+  m_Father: {fileID: 2147302442}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -318,12 +354,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 431867066}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5.4105096, y: 0.87677073, z: 1.1149}
+  m_LocalScale: {x: 5.4105096, y: 0.87677073, z: 1.1149001}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1469982461}
+  m_Father: {fileID: 2147302442}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -478,12 +514,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1060274330}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5.771949, y: 1.1149, z: 1.1149}
+  m_LocalScale: {x: 5.7719493, y: 1.1149001, z: 1.1149001}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1469982461}
+  m_Father: {fileID: 2147302442}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -558,10 +594,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c95a6c2b6277c4d99be5a09dc7d2a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  difficulty: 3
+  QTEHolder: {fileID: 2147302441}
   scanner: {fileID: 1543509643}
   area: {fileID: 266889591}
   scannerOn: 0
   scannerSpeed: 200
+  areaClosestPosition: 0
+  arrowsOn: 0
+  up: {fileID: 575979385546377568, guid: 38c87fdd94d740f42a25eb245829844f, type: 3}
+  down: {fileID: 434401368319113295, guid: 054fd747bcb70514392976ee581eba86, type: 3}
+  left: {fileID: 4788296475198804837, guid: aa230709749135d4da34494faaa7047f, type: 3}
+  right: {fileID: 8171493993119879331, guid: da94a43f19b9cb34caeeb5ec8506b6de, type: 3}
+  parentTransform: {fileID: 14877775}
+  numberOfImages: 7
+  spacing: 150
+  order: []
 --- !u!4 &1090668325
 Transform:
   m_ObjectHideFlags: 0
@@ -669,10 +717,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1060274331}
-  - {fileID: 431867067}
-  - {fileID: 266889590}
-  - {fileID: 1543509642}
+  - {fileID: 2147302442}
+  - {fileID: 14877775}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -706,12 +752,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1543509641}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.072865024, y: 0.87677073, z: 1.1149}
+  m_LocalScale: {x: 0.07286503, y: 0.87677073, z: 1.1149001}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1469982461}
+  m_Father: {fileID: 2147302442}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -825,3 +871,43 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2147302441
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2147302442}
+  m_Layer: 5
+  m_Name: QTE Ping
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &2147302442
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2147302441}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1060274331}
+  - {fileID: 431867067}
+  - {fileID: 266889590}
+  - {fileID: 1543509642}
+  m_Father: {fileID: 1469982461}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
