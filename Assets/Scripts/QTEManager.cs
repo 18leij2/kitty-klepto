@@ -19,6 +19,7 @@ public class QTEManager : MonoBehaviour
     RectTransform areaRectTransform;
 
     // for qte arrows
+    public GameObject arrowHolder;
     public bool arrowsOn = false;
     public GameObject up;
     public GameObject down;
@@ -28,12 +29,18 @@ public class QTEManager : MonoBehaviour
     public int numberOfImages = 3; // max should be 7!!
     public float spacing = 150f;
     public List<GameObject> order = new List<GameObject>();
+    public int orderIndex = 0;
+    public Image timerBar;
+    RectTransform scaleRectTransform;
+    public float timerSpeed = 3;
 
     // Start is called before the first frame update
     void Start()
     {
         scannerRectTransform = scanner.rectTransform;
         areaRectTransform = area.rectTransform;
+
+        scaleRectTransform = timerBar.rectTransform;
     }
 
     // Update is called once per frame
@@ -68,7 +75,7 @@ public class QTEManager : MonoBehaviour
             Vector2 currAreaPosition = areaRectTransform.anchoredPosition;
             float areaWidthHalf = areaRectTransform.sizeDelta.x / 2;
 
-            if (currScannerPosition.x >= currAreaPosition.x - areaWidthHalf && currScannerPosition.x <= currAreaPosition.x + areaWidthHalf)
+            if (scannerOn && currScannerPosition.x >= currAreaPosition.x - areaWidthHalf && currScannerPosition.x <= currAreaPosition.x + areaWidthHalf)
             {
                 scannerOn = false;
                 Debug.Log("Success!");
@@ -84,7 +91,105 @@ public class QTEManager : MonoBehaviour
 
         if (arrowsOn)
         {
+            Vector2 currScale = scaleRectTransform.localScale;
+            if (currScale.x > 0)
+            {
+                scaleRectTransform.localScale = new Vector2(currScale.x - (timerSpeed * Time.deltaTime), currScale.y);
+            }
+            else
+            {
+                arrowsOn = false;
+                Debug.Log("Timout arrows...");
+                arrowHolder.SetActive(false);
+            }
+            
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                if (order[orderIndex].CompareTag("Up"))
+                {
+                    order[orderIndex].SetActive(false);
+                    orderIndex++;
 
+                    if (orderIndex >= order.Count)
+                    {
+                        arrowsOn = false;
+                        Debug.Log("Won arrows");
+                        arrowHolder.SetActive(false);
+                    }
+                } 
+                else
+                {
+                    arrowsOn = false;
+                    Debug.Log("Failed arrows");
+                    arrowHolder.SetActive(false);
+                }    
+            }
+
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                if (order[orderIndex].CompareTag("Down"))
+                {
+                    order[orderIndex].SetActive(false);
+                    orderIndex++;
+
+                    if (orderIndex >= order.Count)
+                    {
+                        arrowsOn = false;
+                        Debug.Log("Won arrows");
+                        arrowHolder.SetActive(false);
+                    }
+                }
+                else
+                {
+                    arrowsOn = false;
+                    Debug.Log("Failed arrows");
+                    arrowHolder.SetActive(false);
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                if (order[orderIndex].CompareTag("Left"))
+                {
+                    order[orderIndex].SetActive(false);
+                    orderIndex++;
+
+                    if (orderIndex >= order.Count)
+                    {
+                        arrowsOn = false;
+                        Debug.Log("Won arrows");
+                        arrowHolder.SetActive(false);
+                    }
+                }
+                else
+                {
+                    arrowsOn = false;
+                    Debug.Log("Failed arrows");
+                    arrowHolder.SetActive(false);
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                if (order[orderIndex].CompareTag("Right"))
+                {
+                    order[orderIndex].SetActive(false);
+                    orderIndex++;
+
+                    if (orderIndex >= order.Count)
+                    {
+                        arrowsOn = false;
+                        Debug.Log("Won arrows");
+                        arrowHolder.SetActive(false);
+                    }
+                }
+                else
+                {
+                    arrowsOn = false;
+                    Debug.Log("Failed arrows");
+                    arrowHolder.SetActive(false);
+                }
+            }
         }
     }
 
@@ -119,16 +224,40 @@ public class QTEManager : MonoBehaviour
 
     void arrows()
     {
+        arrowHolder.SetActive(true);
+        arrowsOn = true;
+        orderIndex = 0;
+        order.Clear();
+
+        for (int i = parentTransform.childCount - 1; i >= 0; i--)
+        {
+            // Get the child at index i
+            Transform child = parentTransform.GetChild(i);
+
+            // Unparent the child (this automatically removes it from the parentRectTransform)
+            child.SetParent(null);
+
+            // Destroy the child object
+            Destroy(child.gameObject);
+        }
+
+        // reset the bar to full
+        Vector2 currentScale = timerBar.GetComponent<RectTransform>().localScale;
+        timerBar.GetComponent<RectTransform>().localScale = new Vector2(10, currentScale.y);
+
         switch (difficulty)
         {
             case 1:
                 numberOfImages = 3;
+                timerSpeed = 3;
                 break;
             case 2:
                 numberOfImages = 5;
+                timerSpeed = 4;
                 break;
             case 3:
                 numberOfImages = 7;
+                timerSpeed = 5;
                 break;
         }
 
