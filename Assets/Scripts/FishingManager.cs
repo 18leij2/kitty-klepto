@@ -17,7 +17,7 @@ public class FishingManager : MonoBehaviour
     public float areaSpeed = 100f;
     public float scannerSpeed = 400f;
     public int moveHold = 0;
-    public int moveHoldNum = 50;
+    public int moveHoldNum = 25;
     public int moveCase = 0;
 
     private Vector3 initialPosition;
@@ -119,7 +119,7 @@ public class FishingManager : MonoBehaviour
         }
     }
 
-    void fishing()
+     public void fishing()
     {
         Vector2 currScale = imageToScale.rectTransform.localScale;
         Vector2 currPosition = imageToScale.rectTransform.localPosition;

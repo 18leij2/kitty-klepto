@@ -11,6 +11,12 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float moveSpeed;
 
+    // collision detection stuff
+    public QTEManager manager;
+    public FishingManager fishManager;
+    public GameObject QTEDDRobject;
+    public GameObject fishingObject;
+
     private void Start() {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -27,6 +33,27 @@ public class PlayerController : MonoBehaviour {
             playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
             rb.AddForce(-1 * inputDir * moveSpeed / 10f);
             Debug.Log("Turning");
+        }
+    }
+
+
+
+    // uhhh sorry this is the quickest way i could think of for the collision detection if theres a better way lmk but the demo deadline was too close T-T
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("QTE"))
+        {
+            manager.QTE();
+        }
+
+        if (other.CompareTag("DDR"))
+        {
+            manager.arrows();
+        }
+
+        if (other.CompareTag("Fishing"))
+        {
+            fishManager.fishing();
         }
     }
 }

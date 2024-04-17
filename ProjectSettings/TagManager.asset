@@ -8,6 +8,9 @@ TagManager:
   - Down
   - Left
   - Right
+  - QTE
+  - DDR
+  - Fishing
   layers:
   - Default
   - TransparentFX

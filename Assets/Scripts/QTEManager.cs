@@ -193,7 +193,7 @@ public class QTEManager : MonoBehaviour
         }
     }
 
-    void QTE()
+    public void QTE()
     {
         QTEHolder.SetActive(true);
         switch (difficulty)
@@ -222,7 +222,7 @@ public class QTEManager : MonoBehaviour
         scannerOn = true;
     }
 
-    void arrows()
+    public void arrows()
     {
         arrowHolder.SetActive(true);
         arrowsOn = true;
