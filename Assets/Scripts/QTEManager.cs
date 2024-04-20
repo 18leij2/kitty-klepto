@@ -69,7 +69,7 @@ public class QTEManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Space) && scannerOn)
         {
             Vector2 currScannerPosition = scannerRectTransform.anchoredPosition;
             Vector2 currAreaPosition = areaRectTransform.anchoredPosition;

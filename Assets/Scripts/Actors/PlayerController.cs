@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
     [SerializeField] private Transform orientation;
@@ -16,6 +18,11 @@ public class PlayerController : MonoBehaviour {
     public FishingManager fishManager;
     public GameObject QTEDDRobject;
     public GameObject fishingObject;
+
+    public Image interact;
+    public Camera mainCamera;
+    public RectTransform uiCanvas;
+    public RectTransform uiElement;
 
     private void Start() {
         Cursor.lockState = CursorLockMode.Locked;
@@ -41,19 +48,50 @@ public class PlayerController : MonoBehaviour {
     // uhhh sorry this is the quickest way i could think of for the collision detection if theres a better way lmk but the demo deadline was too close T-T
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("QTE"))
+        objectToUI(other.gameObject);
+        interact.gameObject.SetActive(true);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        interact.gameObject.SetActive(false);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("QTE") && Input.GetKeyDown(KeyCode.E))
         {
+            interact.gameObject.SetActive(false);
             manager.QTE();
         }
 
-        if (other.CompareTag("DDR"))
+        if (other.CompareTag("DDR") && Input.GetKeyDown(KeyCode.E))
         {
+            interact.gameObject.SetActive(false);
             manager.arrows();
         }
 
-        if (other.CompareTag("Fishing"))
+        if (other.CompareTag("Fishing") && Input.GetKeyDown(KeyCode.E))
         {
+            interact.gameObject.SetActive(false);
             fishManager.fishing();
         }
+    }
+
+    private void objectToUI(GameObject obj)
+    {
+        // Get the object's world position
+        Vector3 objectWorldPos = obj.transform.position;
+
+        // Convert world position to canvas space
+        Vector2 viewportPoint = mainCamera.WorldToViewportPoint(objectWorldPos);
+        Vector2 canvasSize = uiCanvas.sizeDelta;
+        Vector2 canvasPos = new Vector2(
+            (viewportPoint.x * canvasSize.x) - (canvasSize.x * 0.5f),
+            (viewportPoint.y * canvasSize.y) - (canvasSize.y * 0.5f)
+        );
+
+        // Set UI element's position
+        uiElement.localPosition = canvasPos;
     }
 }

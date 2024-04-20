@@ -7,8 +7,10 @@ public class FishingManager : MonoBehaviour
 {
     public GameObject fishingHolder;
     public Image imageToScale;
+    public Image timerToScale;
     public float maxScaleY = 4.36f;
     public float scaleSpeed = 50f;
+    public float timerSpeed = 25f;
     public bool isFishing = false;
     public Image scanner;
     public Image area;
@@ -20,7 +22,10 @@ public class FishingManager : MonoBehaviour
     public int moveHoldNum = 25;
     public int moveCase = 0;
 
+    public QTEManager qteScript;
+
     private Vector3 initialPosition;
+    private Vector3 initialPositionTimer;
 
 
     // Start is called before the first frame update
@@ -28,6 +33,7 @@ public class FishingManager : MonoBehaviour
     {
         // Store the initial position of the image
         initialPosition = imageToScale.rectTransform.localPosition;
+        initialPositionTimer = timerToScale.rectTransform.localPosition;
         scannerRectTransform = scanner.rectTransform;
         areaRectTransform = area.rectTransform;
     }
@@ -70,6 +76,21 @@ public class FishingManager : MonoBehaviour
                     break;
             }
             moveHold--;
+
+            if (timerToScale.rectTransform.localScale.y > 0)
+            {
+                // Increase the image's scale on the y-axis
+                timerToScale.rectTransform.localScale += new Vector3(0, -timerSpeed * Time.deltaTime, 0);
+
+                // Adjust the position to keep the bottom of the image fixed
+                float deltaY = (timerToScale.rectTransform.pivot.y) * timerToScale.rectTransform.rect.height * (-timerSpeed * Time.deltaTime);
+                timerToScale.rectTransform.localPosition += new Vector3(0, deltaY, 0);
+            } else
+            {
+                isFishing = false;
+                Debug.Log("Lose fishing");
+                fishingHolder.SetActive(false);
+            }
 
             // Check if the image's scale on the y-axis is less than the maximum scale
             if (imageToScale.rectTransform.localScale.y < maxScaleY)
@@ -121,6 +142,22 @@ public class FishingManager : MonoBehaviour
 
      public void fishing()
     {
+        switch (qteScript.difficulty)
+        {
+            case 1:
+                scaleSpeed = 1.5f;
+                scannerSpeed = 200f;
+                break;
+            case 2:
+                scaleSpeed = 1.25f;
+                scannerSpeed = 225f;
+                break;
+            case 3:
+                scaleSpeed = 1.25f;
+                scannerSpeed = 250f;
+                break;
+        }
+
         Vector2 currScale = imageToScale.rectTransform.localScale;
         Vector2 currPosition = imageToScale.rectTransform.localPosition;
         imageToScale.rectTransform.localScale = new Vector2(currScale.x, 0);
