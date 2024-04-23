@@ -62,19 +62,19 @@ public class PlayerController : MonoBehaviour {
         if (other.CompareTag("QTE") && Input.GetKeyDown(KeyCode.E))
         {
             interact.gameObject.SetActive(false);
-            manager.QTE();
+            manager.QTE(other.gameObject);
         }
 
         if (other.CompareTag("DDR") && Input.GetKeyDown(KeyCode.E))
         {
             interact.gameObject.SetActive(false);
-            manager.arrows();
+            manager.arrows(other.gameObject);
         }
 
         if (other.CompareTag("Fishing") && Input.GetKeyDown(KeyCode.E))
         {
             interact.gameObject.SetActive(false);
-            fishManager.fishing();
+            fishManager.fishing(other.gameObject);
         }
     }
 

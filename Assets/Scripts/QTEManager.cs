@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.UI;
 
 public class QTEManager : MonoBehaviour
@@ -34,6 +35,9 @@ public class QTEManager : MonoBehaviour
     RectTransform scaleRectTransform;
     public float timerSpeed = 3;
 
+    // for tracking glow effect
+    public GameObject glowObject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,12 +52,12 @@ public class QTEManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            QTE();
+            QTE(this.gameObject);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            arrows();
+            arrows(this.gameObject);
         }
 
         if (scannerOn)
@@ -79,6 +83,7 @@ public class QTEManager : MonoBehaviour
             {
                 scannerOn = false;
                 Debug.Log("Success!");
+                glowObject.SetActive(false);
                 QTEHolder.SetActive(false);
             } 
             else if (scannerOn)
@@ -193,8 +198,10 @@ public class QTEManager : MonoBehaviour
         }
     }
 
-    public void QTE()
+    public void QTE(GameObject inObject)
     {
+        glowObject = inObject;
+
         QTEHolder.SetActive(true);
         switch (difficulty)
         {
@@ -222,8 +229,10 @@ public class QTEManager : MonoBehaviour
         scannerOn = true;
     }
 
-    public void arrows()
+    public void arrows(GameObject inObject)
     {
+        glowObject = inObject;
+
         arrowHolder.SetActive(true);
         arrowsOn = true;
         orderIndex = 0;
@@ -300,4 +309,6 @@ public class QTEManager : MonoBehaviour
             }          
         }
     }
+
+
 }

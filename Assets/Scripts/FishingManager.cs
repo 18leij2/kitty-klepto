@@ -23,6 +23,7 @@ public class FishingManager : MonoBehaviour
     public int moveCase = 0;
 
     public QTEManager qteScript;
+    public GameObject glowObject;
 
     private Vector3 initialPosition;
     private Vector3 initialPositionTimer;
@@ -43,7 +44,7 @@ public class FishingManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha3)) 
         {
-            fishing();
+            fishing(this.gameObject);
         }
 
         if (isFishing)
@@ -140,8 +141,10 @@ public class FishingManager : MonoBehaviour
         }
     }
 
-     public void fishing()
+     public void fishing(GameObject inObject)
     {
+        glowObject = inObject;
+
         switch (qteScript.difficulty)
         {
             case 1:
