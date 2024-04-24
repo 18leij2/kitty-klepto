@@ -136,6 +136,7 @@ public class FishingManager : MonoBehaviour
             {
                 isFishing = false;
                 Debug.Log("Win fishing");
+                glowObject.SetActive(false);
                 fishingHolder.SetActive(false);
             }
         }
