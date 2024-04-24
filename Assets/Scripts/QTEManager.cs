@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.UI;
 
-public class QTEManager : MonoBehaviour
+public class QTEManager : QTE
 {
     public int difficulty = 1; // 1 is easy, 2 is medium, 3 is hard
 
@@ -83,12 +83,14 @@ public class QTEManager : MonoBehaviour
             {
                 scannerOn = false;
                 Debug.Log("Success!");
+                SucceedGame();
                 glowObject.SetActive(false);
                 QTEHolder.SetActive(false);
             } 
             else if (scannerOn)
             {
                 scannerOn = false;
+                FailGame();
                 Debug.Log("Fail...");
                 QTEHolder.SetActive(false);
             } 
@@ -105,6 +107,7 @@ public class QTEManager : MonoBehaviour
             {
                 arrowsOn = false;
                 Debug.Log("Timout arrows...");
+                FailGame();
                 arrowHolder.SetActive(false);
             }
             
@@ -119,6 +122,7 @@ public class QTEManager : MonoBehaviour
                     {
                         arrowsOn = false;
                         Debug.Log("Won arrows");
+                        SucceedGame();
                         glowObject.SetActive(false);
                         arrowHolder.SetActive(false);
                     }
@@ -127,6 +131,7 @@ public class QTEManager : MonoBehaviour
                 {
                     arrowsOn = false;
                     Debug.Log("Failed arrows");
+                    FailGame();
                     arrowHolder.SetActive(false);
                 }    
             }
@@ -142,6 +147,7 @@ public class QTEManager : MonoBehaviour
                     {
                         arrowsOn = false;
                         Debug.Log("Won arrows");
+                        SucceedGame();
                         glowObject.SetActive(false);
                         arrowHolder.SetActive(false);
                     }
@@ -150,6 +156,7 @@ public class QTEManager : MonoBehaviour
                 {
                     arrowsOn = false;
                     Debug.Log("Failed arrows");
+                    FailGame();
                     arrowHolder.SetActive(false);
                 }
             }
@@ -165,6 +172,7 @@ public class QTEManager : MonoBehaviour
                     {
                         arrowsOn = false;
                         Debug.Log("Won arrows");
+                        SucceedGame();
                         glowObject.SetActive(false);
                         arrowHolder.SetActive(false);
                     }
@@ -173,6 +181,7 @@ public class QTEManager : MonoBehaviour
                 {
                     arrowsOn = false;
                     Debug.Log("Failed arrows");
+                    FailGame();
                     arrowHolder.SetActive(false);
                 }
             }
@@ -188,6 +197,7 @@ public class QTEManager : MonoBehaviour
                     {
                         arrowsOn = false;
                         Debug.Log("Won arrows");
+                        SucceedGame();
                         glowObject.SetActive(false);
                         arrowHolder.SetActive(false);
                     }
@@ -196,6 +206,7 @@ public class QTEManager : MonoBehaviour
                 {
                     arrowsOn = false;
                     Debug.Log("Failed arrows");
+                    FailGame();
                     arrowHolder.SetActive(false);
                 }
             }
