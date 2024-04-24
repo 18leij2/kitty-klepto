@@ -119,6 +119,7 @@ public class QTEManager : MonoBehaviour
                     {
                         arrowsOn = false;
                         Debug.Log("Won arrows");
+                        glowObject.SetActive(false);
                         arrowHolder.SetActive(false);
                     }
                 } 
@@ -141,6 +142,7 @@ public class QTEManager : MonoBehaviour
                     {
                         arrowsOn = false;
                         Debug.Log("Won arrows");
+                        glowObject.SetActive(false);
                         arrowHolder.SetActive(false);
                     }
                 }
@@ -163,6 +165,7 @@ public class QTEManager : MonoBehaviour
                     {
                         arrowsOn = false;
                         Debug.Log("Won arrows");
+                        glowObject.SetActive(false);
                         arrowHolder.SetActive(false);
                     }
                 }
@@ -185,6 +188,7 @@ public class QTEManager : MonoBehaviour
                     {
                         arrowsOn = false;
                         Debug.Log("Won arrows");
+                        glowObject.SetActive(false);
                         arrowHolder.SetActive(false);
                     }
                 }
