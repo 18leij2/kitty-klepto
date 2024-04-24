@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class QTE : MonoBehaviour {
     
-    public new delegate void Success();
+    public new delegate void Success(float stealth);
     public event Success OnSuccess;
-    [SerializeField] protected float successSuspicion;
+    [SerializeField] protected float successStealthReduction = 0f;
 
-    public new delegate void Fail();
+    public new delegate void Fail(float stealth);
     public event Fail OnFail;
-    [SerializeField] protected float failSuspicion;
+    [SerializeField] protected float failStealthReduction = 5f;
 
     protected virtual void FailGame() {
-        OnFail?.Invoke();
+        OnFail?.Invoke(failStealthReduction);
     }
 
     protected virtual void SucceedGame() {
-        OnSuccess?.Invoke();
+        OnSuccess?.Invoke(successStealthReduction);
     }
 }
