@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FishingManager : MonoBehaviour
+public class FishingManager : QTE
 {
     public GameObject fishingHolder;
     public Image imageToScale;
@@ -90,6 +90,7 @@ public class FishingManager : MonoBehaviour
             {
                 isFishing = false;
                 Debug.Log("Lose fishing");
+                FailGame();
                 fishingHolder.SetActive(false);
             }
 
@@ -136,6 +137,7 @@ public class FishingManager : MonoBehaviour
             {
                 isFishing = false;
                 Debug.Log("Win fishing");
+                SucceedGame();
                 glowObject.SetActive(false);
                 fishingHolder.SetActive(false);
             }
