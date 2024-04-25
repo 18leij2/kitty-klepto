@@ -7,15 +7,22 @@ public class StealthManager : MonoBehaviour {
 
     [SerializeField] private float maxStealth;
     [SerializeField] private StealthUIManager uiManager;
-    [SerializeField] private float _stealth;
+    [SerializeField] private float stealth;
 
     private void Awake() {
-        _stealth = maxStealth;
+        stealth = maxStealth;
         QTEEventHandler.OnQTEComplete += AdjustStealth;
     }
 
     private void AdjustStealth(float stealthReduction) {
-        _stealth -= stealthReduction;
-        uiManager.IncrementScrollBar(_stealth, maxStealth);
+        stealth -= stealthReduction;
+        uiManager.IncrementScrollBar(stealth, maxStealth);
+        ConditionCheck();
+    }
+
+    private void ConditionCheck() {
+        if (stealth <= 0) {
+            GameManager.Instance.UpdateGameState(GameManager.GameState.Reset);
+        }
     }
 }

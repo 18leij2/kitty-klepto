@@ -25,8 +25,8 @@ public class PlayerController : MonoBehaviour {
     public RectTransform uiElement;
 
     private void Start() {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        // Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
     }
 
     private void Update() {
