@@ -38,6 +38,9 @@ public class QTEManager : QTE
     // for tracking glow effect
     public GameObject glowObject;
 
+    // for the player bool tracker
+    public bool isQTE = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,6 +70,7 @@ public class QTEManager : QTE
             scannerRectTransform.anchoredPosition = new Vector2(xPosition, currScannerPosition.y);
             if (xPosition >= 267)
             {
+                isQTE = false;
                 scannerOn = false;
                 Debug.Log("Timeout...");
                 QTEHolder.SetActive(false);
@@ -81,6 +85,7 @@ public class QTEManager : QTE
 
             if (scannerOn && currScannerPosition.x >= currAreaPosition.x - areaWidthHalf && currScannerPosition.x <= currAreaPosition.x + areaWidthHalf)
             {
+                isQTE = false;
                 scannerOn = false;
                 Debug.Log("Success!");
                 SucceedGame();
@@ -89,6 +94,7 @@ public class QTEManager : QTE
             } 
             else if (scannerOn)
             {
+                isQTE = false;
                 scannerOn = false;
                 FailGame();
                 Debug.Log("Fail...");
@@ -105,6 +111,7 @@ public class QTEManager : QTE
             }
             else
             {
+                isQTE = false;
                 arrowsOn = false;
                 Debug.Log("Timout arrows...");
                 FailGame();
@@ -120,6 +127,7 @@ public class QTEManager : QTE
 
                     if (orderIndex >= order.Count)
                     {
+                        isQTE = false;
                         arrowsOn = false;
                         Debug.Log("Won arrows");
                         SucceedGame();
@@ -129,6 +137,7 @@ public class QTEManager : QTE
                 } 
                 else
                 {
+                    isQTE = false;
                     arrowsOn = false;
                     Debug.Log("Failed arrows");
                     FailGame();
@@ -145,6 +154,7 @@ public class QTEManager : QTE
 
                     if (orderIndex >= order.Count)
                     {
+                        isQTE = false;
                         arrowsOn = false;
                         Debug.Log("Won arrows");
                         SucceedGame();
@@ -154,6 +164,7 @@ public class QTEManager : QTE
                 }
                 else
                 {
+                    isQTE = false;
                     arrowsOn = false;
                     Debug.Log("Failed arrows");
                     FailGame();
@@ -170,6 +181,7 @@ public class QTEManager : QTE
 
                     if (orderIndex >= order.Count)
                     {
+                        isQTE = false;
                         arrowsOn = false;
                         Debug.Log("Won arrows");
                         SucceedGame();
@@ -179,6 +191,7 @@ public class QTEManager : QTE
                 }
                 else
                 {
+                    isQTE = false;
                     arrowsOn = false;
                     Debug.Log("Failed arrows");
                     FailGame();
@@ -195,6 +208,7 @@ public class QTEManager : QTE
 
                     if (orderIndex >= order.Count)
                     {
+                        isQTE = false;
                         arrowsOn = false;
                         Debug.Log("Won arrows");
                         SucceedGame();
@@ -204,6 +218,7 @@ public class QTEManager : QTE
                 }
                 else
                 {
+                    isQTE = false;
                     arrowsOn = false;
                     Debug.Log("Failed arrows");
                     FailGame();
@@ -215,6 +230,7 @@ public class QTEManager : QTE
 
     public void QTE(GameObject inObject)
     {
+        isQTE = true;
         glowObject = inObject;
 
         QTEHolder.SetActive(true);
@@ -246,6 +262,7 @@ public class QTEManager : QTE
 
     public void arrows(GameObject inObject)
     {
+        isQTE = true;
         glowObject = inObject;
 
         arrowHolder.SetActive(true);
