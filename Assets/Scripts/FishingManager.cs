@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,7 +37,19 @@ public class FishingManager : QTE
     public string[] dialogueFishing = { "Pratik's critique! Now that I've returned this item to the fish vendor, I should go call Pratik...",
                                        "I hope no one saw me put that item back... the chef was giving me weird stares, I wonder if he suspects me.",
                                        "If only I could talk to Pratik again... ever since he broke up with me for commiting genocide, life has not been the same."};
+    public string[] dialogueMuseum = { "Pratik, I stayed up for many hours working on finishing this game. Please give me a break!",
+                                       "Sometimes, a life of kleptomaniacy and crime is not one to be desired. My work is simultaneously my passion and my curse.", 
+                                       "My remorse knows no bounds, the risks far outweigh the rewards."};
 
+    // camera stuff
+    public GlobalCameraManager camManager;
+    public CinemachineVirtualCamera museumDoor;
+    public CinemachineVirtualCamera museumInside;
+
+    public GameObject museumReturn;
+    public GameObject museumTP;
+    public GameObject player;
+    public GameObject museumZone;
 
     // Start is called before the first frame update
     void Start()
@@ -197,6 +210,13 @@ public class FishingManager : QTE
         if (glowObject.CompareTag("Fishing"))
         {
             dialogueScript.startDialogue(dialogueFishing);
+        }
+        else if (glowObject.CompareTag("Museum QTE"))
+        {
+            camManager.SwitchPerspectiveCam(museumDoor);
+            player.transform.position = museumReturn.transform.position;
+            museumZone.SetActive(false);
+            dialogueScript.startDialogue(dialogueMuseum);
         }
     }
 }

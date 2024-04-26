@@ -67,6 +67,11 @@ public class Dialogue : MonoBehaviour
         }
         else
         {
+            GameManager.Instance.returns += 1;
+            if (GameManager.Instance.returns == 7)
+            {
+                Debug.Log("FINISHED GAME");
+            }
             canvasGroup.alpha = 0;
             GameManager.Instance.UpdateGameState(GameManager.GameState.Game);
         }
