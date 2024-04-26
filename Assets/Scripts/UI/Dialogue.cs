@@ -68,7 +68,7 @@ public class Dialogue : MonoBehaviour
         else
         {
             GameManager.Instance.returns += 1;
-            if (GameManager.Instance.returns == 7)
+            if (GameManager.Instance.returns == 6)
             {
                 Debug.Log("FINISHED GAME");
             }
