@@ -17,6 +17,11 @@ public class QTE : MonoBehaviour {
     }
 
     protected virtual void SucceedGame() {
+        GameManager.Instance.returns += 1;
+        if (GameManager.Instance.returns == 6)
+        {
+            Debug.Log("FINISHED GAME");
+        }
         OnSuccess?.Invoke(successStealthReduction);
     }
 }

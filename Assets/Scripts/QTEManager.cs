@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -52,6 +53,21 @@ public class QTEManager : QTE
     public string[] dialogueCinema = { "WHEW! I can't believe the cinema door is locked! What am I supposed to do?", 
                                        "Well, I can just leave these tickets by the door, can't I? I'm sure whoever I took this from will come back to find it.", 
                                        "The ticket was for yesterday's screening though... maybe the owner can trade it in for a new showing?" };
+    public string[] dialogueBank = { "I can barely remember the last time I broke into a bank! It was wild and there was much money to be made!",
+                                     "Alas, I have come to pay the ultimate price. One can't steal from the bank without incurring a heavy guilty conscience.", 
+                                     "I also do not want to be responsible for throwing the economy into disarray." };
+                                       
+
+    //camera stuff
+    // camera stuff
+    public GlobalCameraManager camManager;
+    public CinemachineVirtualCamera bankDoor;
+    public CinemachineVirtualCamera bankInside;
+
+    public GameObject bankReturn;
+    public GameObject bankTP;
+    public GameObject player;
+    public GameObject bankZone;
 
     // Start is called before the first frame update
     void Start()
@@ -372,6 +388,13 @@ public class QTEManager : QTE
         else if (glowObject.CompareTag("Cinema"))
         {
             dialogueScript.startDialogue(dialogueCinema);
+        }
+        else if (glowObject.CompareTag("Bank QTE")) 
+        {
+            camManager.SwitchPerspectiveCam(bankDoor);
+            player.transform.position = bankReturn.transform.position;
+            bankZone.SetActive(false);
+            dialogueScript.startDialogue(dialogueBank);
         }
     }
 }
