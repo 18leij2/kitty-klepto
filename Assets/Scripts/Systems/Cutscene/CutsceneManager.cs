@@ -41,6 +41,7 @@ public class CutsceneManager : MonoBehaviour {
             if (_active) {
                 _active = false;
                 _currSequenceIndex = -1;
+                _activeAudioSource.Stop();
                 StartCoroutine(DelayedTransition());
                 foreach (Image image in _cutsceneImages) {
                     Destroy(image.gameObject);
@@ -103,7 +104,7 @@ public class CutsceneManager : MonoBehaviour {
         }
 
         yield return new WaitForSeconds(sequenceDelay);
-        if (_currSequenceIndex - 1 == 0) _active = true;
+        if (_currSequenceIndex == 0) _active = true;
         _activeTransition = null;
         yield return null;
     }
