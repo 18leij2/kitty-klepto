@@ -8,10 +8,18 @@ public class StealthManager : MonoBehaviour {
     [SerializeField] private float maxStealth;
     [SerializeField] private StealthUIManager uiManager;
     [SerializeField] private float stealth;
-
+    
     private void Awake() {
         stealth = maxStealth;
         QTEEventHandler.OnQTEComplete += AdjustStealth;
+    }
+
+    private void Start() {
+        GameManager.Instance.OnStateTransition += ToggleDisplay;
+    }
+
+    private void ToggleDisplay(GameManager.GameState state) {
+        uiManager.ToggleDisplay(state);
     }
 
     private void AdjustStealth(float stealthReduction) {

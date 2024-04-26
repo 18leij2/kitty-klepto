@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using DG.Tweening;
 using UnityEngine;
 using Image = UnityEngine.UI.Image;
@@ -34,7 +35,6 @@ public class CutsceneManager : MonoBehaviour {
     private void SetActive(GameManager.GameState state) {
         if (state is GameManager.GameState.Cutscene) {
             LoadNextSequence();
-            _active = true;
             DOTween.To(() => overlay.alpha, x => overlay.alpha = x, 1f, overlayFadeTime);
         }
         else {
@@ -59,6 +59,8 @@ public class CutsceneManager : MonoBehaviour {
         if (_active) {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 LoadNextSequence();
+            } else if (Input.GetKeyDown(KeyCode.Return)) {
+                GameManager.Instance.UpdateGameState(GameManager.GameState.Game);
             }
         }
     }
@@ -101,6 +103,7 @@ public class CutsceneManager : MonoBehaviour {
         }
 
         yield return new WaitForSeconds(sequenceDelay);
+        if (_currSequenceIndex - 1 == 0) _active = true;
         _activeTransition = null;
         yield return null;
     }
