@@ -25,6 +25,12 @@ public class CutsceneManager : MonoBehaviour {
 
     private List<Image> _cutsceneImages;
 
+    // im referencing dialogue here
+    public Dialogue dialogueScript;
+    public string[] dialogueString = { "Woah, where is Tick? I think I had to press [Space] to keep talking...",
+                                       "And once I exit this dialogue, I should be able to press [Escape] to open up my control scheme!",
+                                       "Now I've got to find a way to return these items to their respectful Pratiks..."};
+
     private void Start() {
         GameManager.Instance.OnStateTransition += SetActive;
         _cutsceneImages = new List<Image>();
@@ -62,6 +68,7 @@ public class CutsceneManager : MonoBehaviour {
                 LoadNextSequence();
             } else if (Input.GetKeyDown(KeyCode.Return)) {
                 GameManager.Instance.UpdateGameState(GameManager.GameState.Game);
+                dialogueScript.startDialogue(dialogueString);
             }
         }
     }
@@ -70,6 +77,7 @@ public class CutsceneManager : MonoBehaviour {
     public void LoadNextSequence() {
         if (_currSequenceIndex >= cutsceneSequence.Count - 1) {
             GameManager.Instance.UpdateGameState(GameManager.GameState.Game);
+            dialogueScript.startDialogue(dialogueString);
             return;
         } 
         if (_activeTransition == null && _currSequenceIndex < cutsceneSequence.Count) {

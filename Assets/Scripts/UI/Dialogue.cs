@@ -38,8 +38,9 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    void startDialogue(string[] inLines)
+    public void startDialogue(string[] inLines)
     {
+        textComponent.text = string.Empty;
         lines = inLines;
         canvasGroup.alpha = 1;
         GameManager.Instance.UpdateGameState(GameManager.GameState.Dialogue);
