@@ -28,6 +28,8 @@ public class FishingManager : QTE
     private Vector3 initialPosition;
     private Vector3 initialPositionTimer;
 
+    public bool isQTE = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -88,6 +90,7 @@ public class FishingManager : QTE
                 timerToScale.rectTransform.localPosition += new Vector3(0, deltaY, 0);
             } else
             {
+                isQTE = false;
                 isFishing = false;
                 Debug.Log("Lose fishing");
                 FailGame();
@@ -135,6 +138,7 @@ public class FishingManager : QTE
                 }
             } else
             {
+                isQTE = false;
                 isFishing = false;
                 Debug.Log("Win fishing");
                 SucceedGame();
@@ -146,6 +150,7 @@ public class FishingManager : QTE
 
      public void fishing(GameObject inObject)
     {
+        isQTE = true;
         glowObject = inObject;
 
         switch (qteScript.difficulty)

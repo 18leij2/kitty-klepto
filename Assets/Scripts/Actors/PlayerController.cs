@@ -36,7 +36,8 @@ public class PlayerController : MonoBehaviour {
         float horInput = Input.GetAxis("Horizontal");
         float vertInput = Input.GetAxis("Vertical");
         Vector3 inputDir = new Vector3(horInput, 0f, vertInput);
-        if (inputDir != Vector3.zero) {
+        GameManager.GameState currentState = GameManager.Instance.State;
+        if (inputDir != Vector3.zero && (!manager.isQTE && !fishManager.isQTE) && currentState == GameManager.GameState.Game) {
             playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
             rb.AddForce(-1 * inputDir * moveSpeed / 10f);
             Debug.Log("Turning");
