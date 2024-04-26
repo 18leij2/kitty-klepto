@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour {
     public delegate void StateTransition(GameState state);
     public event StateTransition OnStateTransition;
 
+    public int returns = 0;
+
     public enum GameState {
         Menu,
         Cutscene,

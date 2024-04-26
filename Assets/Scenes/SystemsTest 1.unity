@@ -630,6 +630,12 @@ MonoBehaviour:
   overlayFadeTime: 2
   delayBeforeSequence: 3
   sequenceDelay: 1
+  dialogueScript: {fileID: 0}
+  dialogueString:
+  - Woah, where is Tick? I think I had to press [Space] to keep talking...
+  - And once I exit this dialogue, I should be able to press [Escape] to open up
+    my control scheme!
+  - Now I've got to find a way to return these items to their respectful Pratiks...
 --- !u!82 &166796281
 AudioSource:
   m_ObjectHideFlags: 0
@@ -911,6 +917,14 @@ MonoBehaviour:
   qteScript: {fileID: 1090668324}
   glowObject: {fileID: 0}
   isQTE: 0
+  dialogueScript: {fileID: 0}
+  dialogueFishing:
+  - Pratik's critique! Now that I've returned this item to the fish vendor, I should
+    go call Pratik...
+  - I hope no one saw me put that item back... the chef was giving me weird stares,
+    I wonder if he suspects me.
+  - If only I could talk to Pratik again... ever since he broke up with me for commiting
+    genocide, life has not been the same.
 --- !u!4 &219758831
 Transform:
   m_ObjectHideFlags: 0
@@ -3144,6 +3158,27 @@ MonoBehaviour:
   timerSpeed: 3
   glowObject: {fileID: 0}
   isQTE: 0
+  dialogueScript: {fileID: 0}
+  dialogueVending:
+  - Woah, Pratik! Now that I've returned this item to the vending machine, I should
+    feel a little better...
+  - I hope no one saw me put that item back... in a way, this feels like a large
+    burden has been lifted off my chest!
+  - If only I could talk to Pratik again... ever since he broke up with me for stealing,
+    life has not been the same.
+  dialoguePoster:
+  - How Pratikular! Now that I've returned this poster of Teek to the wall, I feel
+    a lot better!
+  - I hope no one saw me put that item back... hopefully, it was okay to use my saliva
+    to stick it to the wall.
+  - If only I could talk to Pratik again... ever since he broke up with me for commiting
+    manslaughter, life has not been the same.
+  dialogueCinema:
+  - WHEW! I can't believe the cinema door is locked! What am I supposed to do?
+  - Well, I can just leave these tickets by the door, can't I? I'm sure whoever I
+    took this from will come back to find it.
+  - The ticket was for yesterday's screening though... maybe the owner can trade
+    it in for a new showing?
 --- !u!4 &1090668325
 Transform:
   m_ObjectHideFlags: 0
