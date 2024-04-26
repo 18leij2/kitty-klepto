@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour {
         Menu,
         Cutscene,
         Game,
+        Dialogue,
+        Pause,
         Reset,
         Win
     }
@@ -34,13 +36,19 @@ public class GameManager : MonoBehaviour {
                 Debug.Log("Game State: Menu");
                 break;
             case GameState.Cutscene:
-                Debug.Log("Game State: Options");
+                Debug.Log("Game State: Cutscene");
                 break;
             case GameState.Game:
                 Debug.Log("Game State: Game");
                 break;
+            case GameState.Dialogue:
+                Debug.Log("Game State: Dialogue");
+                break;
             case GameState.Reset:
                 Debug.Log("Game State: Reset");
+                break;
+            case GameState.Pause:
+                Debug.Log("Game State: Pause");
                 break;
             case GameState.Win:
                 Debug.Log("Game State: Win");
