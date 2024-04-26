@@ -41,8 +41,20 @@ public class GlobalCameraManager : MonoBehaviour {
         ResetCamParams();
     }
 
+    public void SwitchPerspectiveCam(CinemachineVirtualCamera camera) {
+        menuCam.m_Priority = 0;
+        for (int i = 0; i < perspectiveCams.Count; i++) {
+            if (camera == perspectiveCams[i]) {
+                _perspectiveCamLoadIndex = i;
+                break;
+            }
+        }
+        SwitchToPerspectiveCam();
+    }
+
     private void SwitchToPerspectiveCam() {
         menuCam.m_Priority = 0;
+        ResetCamParams();
         perspectiveCams[_perspectiveCamLoadIndex].m_Priority = 1;
     }
 

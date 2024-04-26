@@ -33,9 +33,15 @@ public class PlayerController : MonoBehaviour {
         Vector3 viewDir = player.position = new Vector3(transform.position.x, player.position.y, transform.position.z);
         orientation.forward = viewDir.normalized;
 
-        float horInput = Input.GetAxis("Horizontal");
-        float vertInput = Input.GetAxis("Vertical");
-        Vector3 inputDir = new Vector3(horInput, 0f, vertInput);
+        Vector3 camForward = Camera.main.transform.forward;
+        Vector3 camRight = Camera.main.transform.right;
+        camForward.y = 0f;
+        camRight.y = 0f;
+        
+        Vector3 horInput = Input.GetAxis("Horizontal") * -camRight;
+        Vector3 vertInput = Input.GetAxis("Vertical") * -camForward;
+        Vector3 inputDir = horInput + vertInput;
+        
         GameManager.GameState currentState = GameManager.Instance.State;
         if (inputDir != Vector3.zero && (!manager.isQTE && !fishManager.isQTE) && currentState == GameManager.GameState.Game) {
             playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
