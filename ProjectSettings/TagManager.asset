@@ -11,6 +11,14 @@ TagManager:
   - QTE
   - DDR
   - Fishing
+  - Cinema
+  - Bank
+  - Museum
+  - Perspective Camera
+  - Museum Door
+  - Bank Door
+  - Bank QTE
+  - Museum QTE
   layers:
   - Default
   - TransparentFX

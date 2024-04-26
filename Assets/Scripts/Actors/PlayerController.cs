@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class PlayerController : MonoBehaviour {
     [SerializeField] private Transform orientation;
@@ -24,6 +25,18 @@ public class PlayerController : MonoBehaviour {
     public Camera mainCamera;
     public RectTransform uiCanvas;
     public RectTransform uiElement;
+
+    // camera stuff
+    public GlobalCameraManager camManager;
+    public CinemachineVirtualCamera bankDoor;
+    public CinemachineVirtualCamera bankInside;
+    public CinemachineVirtualCamera museumDoor;
+    public CinemachineVirtualCamera museumInside;
+
+    public GameObject bankReturn;
+    public GameObject museumReturn;
+    public GameObject bankTP;
+    public GameObject museumTP;
 
     private void Start() {
         // Cursor.lockState = CursorLockMode.Locked;
@@ -63,8 +76,11 @@ public class PlayerController : MonoBehaviour {
     // uhhh sorry this is the quickest way i could think of for the collision detection if theres a better way lmk but the demo deadline was too close T-T
     private void OnTriggerEnter(Collider other)
     {
-        objectToUI(other.gameObject);
-        interact.gameObject.SetActive(true);
+        if (!other.CompareTag("Perspective Camera"))
+        {
+            objectToUI(other.gameObject);
+            interact.gameObject.SetActive(true);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -97,6 +113,34 @@ public class PlayerController : MonoBehaviour {
             interact.gameObject.SetActive(false);
             manager.difficulty = UnityEngine.Random.Range(2, 4);
             manager.QTE(other.gameObject);
+        }
+
+        if (other.CompareTag("Bank Door") && Input.GetKeyDown(KeyCode.E))
+        {
+            interact.gameObject.SetActive(false);
+            camManager.SwitchPerspectiveCam(bankInside);
+            gameObject.transform.position = bankTP.transform.position;
+        }
+
+        if (other.CompareTag("Museum Door") && Input.GetKeyDown(KeyCode.E))
+        {
+            interact.gameObject.SetActive(false);
+            camManager.SwitchPerspectiveCam(museumInside);
+            gameObject.transform.position = museumTP.transform.position;
+        }
+
+        if (other.CompareTag("Bank QTE") && Input.GetKeyDown(KeyCode.E))
+        {
+            interact.gameObject.SetActive(false);
+            manager.difficulty = UnityEngine.Random.Range(2, 4);
+            manager.arrows(other.gameObject);
+        }
+
+        if (other.CompareTag("Museum QTE") && Input.GetKeyDown(KeyCode.E))
+        {
+            interact.gameObject.SetActive(false);
+            manager.difficulty = UnityEngine.Random.Range(2, 4);
+            fishManager.fishing(other.gameObject);
         }
     }
 
