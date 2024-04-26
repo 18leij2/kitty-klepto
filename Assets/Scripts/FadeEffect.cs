@@ -11,14 +11,14 @@ public class FadeEffect : MonoBehaviour
     public float maxAlpha = 1f;   // Maximum alpha value
 
     private Image imageComponent;
-    private TextMeshProUGUI textMeshPro;
+    // private TextMeshProUGUI textMeshPro;
     private float currentAlpha = 1f;
     private bool increasingAlpha = false;
 
     private void Start()
     {
         imageComponent = GetComponent<Image>();
-        textMeshPro = GetComponentInChildren<TextMeshProUGUI>();
+        // textMeshPro = GetComponentInChildren<TextMeshProUGUI>();
 
         // Set initial alpha for both image and text
         SetAlpha(currentAlpha);
@@ -64,11 +64,11 @@ public class FadeEffect : MonoBehaviour
         imageComponent.color = imageColor;
 
         // Set alpha for TMP text
-        if (textMeshPro != null)
-        {
-            Color textColor = textMeshPro.color;
-            textColor.a = alpha;
-            textMeshPro.color = textColor;
-        }
+        //if (textMeshPro != null)
+        //{
+        //    Color textColor = textMeshPro.color;
+        //    textColor.a = alpha;
+        //    textMeshPro.color = textColor;
+        //}
     }
 }
