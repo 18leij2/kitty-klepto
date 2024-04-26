@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float moveSpeed;
+    [SerializeField] private Animator animator;
 
     // collision detection stuff
     public QTEManager manager;
@@ -47,6 +48,13 @@ public class PlayerController : MonoBehaviour {
             playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
             rb.AddForce(-1 * inputDir * moveSpeed / 10f);
             Debug.Log("Turning");
+        }
+
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) {
+            animator.SetBool("isMoving", true);
+        }
+        else {
+            animator.SetBool("isMoving", false);
         }
     }
 
