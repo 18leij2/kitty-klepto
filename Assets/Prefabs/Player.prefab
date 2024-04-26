@@ -113,7 +113,8 @@ MonoBehaviour:
   playerObj: {fileID: 1689616413596481366}
   rb: {fileID: 6518128048095664452}
   rotationSpeed: 5
-  moveSpeed: 50
+  moveSpeed: 20
+  animator: {fileID: 1987132471}
   manager: {fileID: 0}
   fishManager: {fileID: 0}
   QTEDDRobject: {fileID: 0}
