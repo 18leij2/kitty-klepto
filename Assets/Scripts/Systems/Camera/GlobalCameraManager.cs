@@ -38,6 +38,7 @@ public class GlobalCameraManager : MonoBehaviour {
 
     private void SwitchToMenuCam() {
         menuCam.m_Priority = 1;
+        _perspectiveCamLoadIndex = firstLoadIndex;
         ResetCamParams();
     }
 

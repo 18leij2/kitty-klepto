@@ -8,8 +8,11 @@ using Image = UnityEngine.UI.Image;
 
 public class CutsceneManager : MonoBehaviour {
     [SerializeField] private List<CutsceneData> cutsceneSequence;
+    [SerializeField] private List<CutsceneData> endingSequence;
     [SerializeField] private CanvasGroup overlay;
     [SerializeField] private GameObject imagePrefab;
+
+    private List<CutsceneData> sequence = new List<CutsceneData>();
 
     [Header("Timing")] 
     [SerializeField] private float overlayFadeTime = 2f;
@@ -40,6 +43,11 @@ public class CutsceneManager : MonoBehaviour {
 
     private void SetActive(GameManager.GameState state) {
         if (state is GameManager.GameState.Cutscene) {
+            sequence = cutsceneSequence;
+            LoadNextSequence();
+            DOTween.To(() => overlay.alpha, x => overlay.alpha = x, 1f, overlayFadeTime);
+        } else if (state is GameManager.GameState.Win) {
+            sequence = endingSequence;
             LoadNextSequence();
             DOTween.To(() => overlay.alpha, x => overlay.alpha = x, 1f, overlayFadeTime);
         }
@@ -67,20 +75,26 @@ public class CutsceneManager : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 LoadNextSequence();
             } else if (Input.GetKeyDown(KeyCode.Return)) {
-                GameManager.Instance.UpdateGameState(GameManager.GameState.Game);
-                dialogueScript.startDialogue(dialogueString);
+                if (GameManager.Instance.State == GameManager.GameState.Cutscene) {
+                    GameManager.Instance.UpdateGameState(GameManager.GameState.Game);
+                    dialogueScript.startDialogue(dialogueString);
+                }
+                if (GameManager.Instance.State == GameManager.GameState.Win) GameManager.Instance.UpdateGameState(GameManager.GameState.Menu);
             }
         }
     }
 
 
     public void LoadNextSequence() {
-        if (_currSequenceIndex >= cutsceneSequence.Count - 1) {
-            GameManager.Instance.UpdateGameState(GameManager.GameState.Game);
-            dialogueScript.startDialogue(dialogueString);
+        if (_currSequenceIndex >= sequence.Count - 1) {
+            if (GameManager.Instance.State == GameManager.GameState.Cutscene) {
+                GameManager.Instance.UpdateGameState(GameManager.GameState.Game);
+                dialogueScript.startDialogue(dialogueString);
+            }
+            if (GameManager.Instance.State == GameManager.GameState.Win) GameManager.Instance.UpdateGameState(GameManager.GameState.Menu);
             return;
         } 
-        if (_activeTransition == null && _currSequenceIndex < cutsceneSequence.Count) {
+        if (_activeTransition == null && _currSequenceIndex < sequence.Count) {
             _activeAudioSource.Stop();
             _activeTransition = LoadSequenceAction();
             StartCoroutine(_activeTransition);
@@ -93,10 +107,10 @@ public class CutsceneManager : MonoBehaviour {
             yield return new WaitForSeconds(0.03f);
             _cutsceneImages[_currSequenceIndex].GetComponent<CanvasGroup>().alpha = 0f;
             _currSequenceIndex++;
-            _activeAudioSource.clip = cutsceneSequence[_currSequenceIndex].soundClip;
+            _activeAudioSource.clip = sequence[_currSequenceIndex].soundClip;
             _activeAudioSource.Play();
             Image frame = Instantiate(imagePrefab, transform.position, Quaternion.identity, transform).GetComponent<Image>();
-            frame.sprite = cutsceneSequence[_currSequenceIndex].imageTexture;
+            frame.sprite = sequence[_currSequenceIndex].imageTexture;
             frame.transform.DOLocalMove(new Vector3(0f, 200f, 0f), 0f);
             frame.transform.DOMove(transform.position, 0.1f).SetEase(Ease.Flash);
             _cutsceneImages.Add(frame);
@@ -105,8 +119,8 @@ public class CutsceneManager : MonoBehaviour {
             _currSequenceIndex++;
             yield return new WaitForSeconds(delayBeforeSequence);
             Image frame = Instantiate(imagePrefab, transform.position, Quaternion.identity, transform).GetComponent<Image>();
-            frame.sprite = cutsceneSequence[_currSequenceIndex].imageTexture;
-            _activeAudioSource.clip = cutsceneSequence[_currSequenceIndex].soundClip;
+            frame.sprite = sequence[_currSequenceIndex].imageTexture;
+            _activeAudioSource.clip = sequence[_currSequenceIndex].soundClip;
             _activeAudioSource.Play();
             _cutsceneImages.Add(frame);
         }

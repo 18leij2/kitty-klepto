@@ -19,9 +19,14 @@ public class QTEEventHandler : MonoBehaviour {
         else { _instance = this; }
         
         foreach (QTE qte in minigames) {
-            qte.OnSuccess += QTECompletion;
+            qte.OnSuccess += Success;
             qte.OnFail += QTECompletion;
         }
+    }
+
+    private void Success(float stealth) {
+        QTECompletion(stealth);
+        AudioManager.Instance.PlaySoundEffect(2);
     }
 
     private void QTECompletion(float stealth) {

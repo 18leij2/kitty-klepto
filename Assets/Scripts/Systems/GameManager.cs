@@ -35,15 +35,19 @@ public class GameManager : MonoBehaviour {
         OnStateTransition?.Invoke(State);
         switch (newState) {
             case GameState.Menu:
+                AudioManager.Instance.PlayTrack(0);
                 Debug.Log("Game State: Menu");
                 break;
             case GameState.Cutscene:
+                AudioManager.Instance.SetVolume(0f);
                 Debug.Log("Game State: Cutscene");
                 break;
             case GameState.Game:
+                AudioManager.Instance.SetVolume(0.6f);
                 Debug.Log("Game State: Game");
                 break;
             case GameState.Dialogue:
+                AudioManager.Instance.SetVolume(0.1f);
                 Debug.Log("Game State: Dialogue");
                 break;
             case GameState.Reset:
@@ -53,10 +57,19 @@ public class GameManager : MonoBehaviour {
                 Debug.Log("Game State: Pause");
                 break;
             case GameState.Win:
+                AudioManager.Instance.FadeOut();
                 Debug.Log("Game State: Win");
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
+        }
+    }
+
+    private void Update() {
+        if (State == GameState.Game) {
+            if ((Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.LeftShift)) && Input.GetKeyDown(KeyCode.P)) {
+                UpdateGameState(GameState.Win);
+            }
         }
     }
 }
