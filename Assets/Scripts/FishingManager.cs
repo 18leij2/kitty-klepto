@@ -28,6 +28,15 @@ public class FishingManager : QTE
     private Vector3 initialPosition;
     private Vector3 initialPositionTimer;
 
+    public bool isQTE = false;
+
+    // dialogue
+    // for dialogue systems
+    public Dialogue dialogueScript;
+    public string[] dialogueFishing = { "Pratik's critique! Now that I've returned this item to the fish vendor, I should go call Pratik...",
+                                       "I hope no one saw me put that item back... the chef was giving me weird stares, I wonder if he suspects me.",
+                                       "If only I could talk to Pratik again... ever since he broke up with me for commiting genocide, life has not been the same."};
+
 
     // Start is called before the first frame update
     void Start()
@@ -88,6 +97,7 @@ public class FishingManager : QTE
                 timerToScale.rectTransform.localPosition += new Vector3(0, deltaY, 0);
             } else
             {
+                isQTE = false;
                 isFishing = false;
                 Debug.Log("Lose fishing");
                 FailGame();
@@ -135,9 +145,11 @@ public class FishingManager : QTE
                 }
             } else
             {
+                isQTE = false;
                 isFishing = false;
                 Debug.Log("Win fishing");
                 SucceedGame();
+                initiateDialogue();
                 glowObject.SetActive(false);
                 fishingHolder.SetActive(false);
             }
@@ -146,6 +158,7 @@ public class FishingManager : QTE
 
      public void fishing(GameObject inObject)
     {
+        isQTE = true;
         glowObject = inObject;
 
         switch (qteScript.difficulty)
@@ -177,5 +190,13 @@ public class FishingManager : QTE
 
         fishingHolder.SetActive(true);
         isFishing = true;
+    }
+
+    private void initiateDialogue()
+    {
+        if (glowObject.CompareTag("Fishing"))
+        {
+            dialogueScript.startDialogue(dialogueFishing);
+        }
     }
 }
