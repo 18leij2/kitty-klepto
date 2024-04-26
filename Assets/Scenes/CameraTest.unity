@@ -6055,24 +6055,8 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6518128047282052147, guid: 734b9d46f522c8741a343a0da2e352e3, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6518128047282052147, guid: 734b9d46f522c8741a343a0da2e352e3, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ad6db8d9d593eac4aafdd90a6ff99659, type: 2}
-    - target: {fileID: 6518128048037538553, guid: 734b9d46f522c8741a343a0da2e352e3, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ad6db8d9d593eac4aafdd90a6ff99659, type: 2}
     - target: {fileID: 6518128048095664449, guid: 734b9d46f522c8741a343a0da2e352e3, type: 3}
       propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6518128048095664449, guid: 734b9d46f522c8741a343a0da2e352e3, type: 3}
-      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6518128048095664450, guid: 734b9d46f522c8741a343a0da2e352e3, type: 3}
@@ -6080,37 +6064,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1090668324}
     - target: {fileID: 6518128048095664450, guid: 734b9d46f522c8741a343a0da2e352e3, type: 3}
-      propertyPath: interact
-      value: 
-      objectReference: {fileID: 567468432}
-    - target: {fileID: 6518128048095664450, guid: 734b9d46f522c8741a343a0da2e352e3, type: 3}
-      propertyPath: uiCanvas
-      value: 
-      objectReference: {fileID: 1469982461}
-    - target: {fileID: 6518128048095664450, guid: 734b9d46f522c8741a343a0da2e352e3, type: 3}
-      propertyPath: moveSpeed
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6518128048095664450, guid: 734b9d46f522c8741a343a0da2e352e3, type: 3}
-      propertyPath: uiElement
-      value: 
-      objectReference: {fileID: 567468431}
-    - target: {fileID: 6518128048095664450, guid: 734b9d46f522c8741a343a0da2e352e3, type: 3}
-      propertyPath: mainCamera
-      value: 
-      objectReference: {fileID: 845369836}
-    - target: {fileID: 6518128048095664450, guid: 734b9d46f522c8741a343a0da2e352e3, type: 3}
       propertyPath: fishManager
       value: 
       objectReference: {fileID: 219758830}
-    - target: {fileID: 6518128048095664452, guid: 734b9d46f522c8741a343a0da2e352e3, type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6518128048095664452, guid: 734b9d46f522c8741a343a0da2e352e3, type: 3}
-      propertyPath: m_Constraints
-      value: 116
-      objectReference: {fileID: 0}
     - target: {fileID: 6518128048095664453, guid: 734b9d46f522c8741a343a0da2e352e3, type: 3}
       propertyPath: m_RootOrder
       value: 0
