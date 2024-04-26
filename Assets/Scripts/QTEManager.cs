@@ -41,6 +41,15 @@ public class QTEManager : QTE
     // for the player bool tracker
     public bool isQTE = false;
 
+    // for dialogue systems
+    public Dialogue dialogueScript;
+    public string[] dialogueVending = { "Woah, Pratik! Now that I've returned this item to the vending machine, I should feel a little better...",
+                                        "I hope no one saw me put that item back... in a way, this feels like a large burden has been lifted off my chest!",
+                                        "If only I could talk to Pratik again... ever since he broke up with me for stealing, life has not been the same."};
+    public string[] dialoguePoster = { "How Pratikular! Now that I've returned this poster of Teek to the wall, I feel a lot better!",
+                                       "I hope no one saw me put that item back... hopefully, it was okay to use my saliva to stick it to the wall.",
+                                       "If only I could talk to Pratik again... ever since he broke up with me for commiting manslaughter, life has not been the same."};
+
     // Start is called before the first frame update
     void Start()
     {
@@ -89,6 +98,7 @@ public class QTEManager : QTE
                 scannerOn = false;
                 Debug.Log("Success!");
                 SucceedGame();
+                initiateDialogue();
                 glowObject.SetActive(false);
                 QTEHolder.SetActive(false);
             } 
@@ -131,6 +141,7 @@ public class QTEManager : QTE
                         arrowsOn = false;
                         Debug.Log("Won arrows");
                         SucceedGame();
+                        initiateDialogue();
                         glowObject.SetActive(false);
                         arrowHolder.SetActive(false);
                     }
@@ -158,6 +169,7 @@ public class QTEManager : QTE
                         arrowsOn = false;
                         Debug.Log("Won arrows");
                         SucceedGame();
+                        initiateDialogue();
                         glowObject.SetActive(false);
                         arrowHolder.SetActive(false);
                     }
@@ -185,6 +197,7 @@ public class QTEManager : QTE
                         arrowsOn = false;
                         Debug.Log("Won arrows");
                         SucceedGame();
+                        initiateDialogue();
                         glowObject.SetActive(false);
                         arrowHolder.SetActive(false);
                     }
@@ -212,6 +225,7 @@ public class QTEManager : QTE
                         arrowsOn = false;
                         Debug.Log("Won arrows");
                         SucceedGame();
+                        initiateDialogue();
                         glowObject.SetActive(false);
                         arrowHolder.SetActive(false);
                     }
@@ -342,5 +356,15 @@ public class QTEManager : QTE
         }
     }
 
-
+    private void initiateDialogue()
+    {
+        if (glowObject.CompareTag("QTE"))
+        {
+            dialogueScript.startDialogue(dialoguePoster);
+        }
+        else if (glowObject.CompareTag("DDR"))
+        {
+            dialogueScript.startDialogue(dialogueVending);
+        }
+    }
 }
