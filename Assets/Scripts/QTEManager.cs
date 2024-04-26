@@ -49,6 +49,9 @@ public class QTEManager : QTE
     public string[] dialoguePoster = { "How Pratikular! Now that I've returned this poster of Teek to the wall, I feel a lot better!",
                                        "I hope no one saw me put that item back... hopefully, it was okay to use my saliva to stick it to the wall.",
                                        "If only I could talk to Pratik again... ever since he broke up with me for commiting manslaughter, life has not been the same."};
+    public string[] dialogueCinema = { "WHEW! I can't believe the cinema door is locked! What am I supposed to do?", 
+                                       "Well, I can just leave these tickets by the door, can't I? I'm sure whoever I took this from will come back to find it.", 
+                                       "The ticket was for yesterday's screening though... maybe the owner can trade it in for a new showing?" };
 
     // Start is called before the first frame update
     void Start()
@@ -365,6 +368,10 @@ public class QTEManager : QTE
         else if (glowObject.CompareTag("DDR"))
         {
             dialogueScript.startDialogue(dialogueVending);
+        }
+        else if (glowObject.CompareTag("Cinema"))
+        {
+            dialogueScript.startDialogue(dialogueCinema);
         }
     }
 }
