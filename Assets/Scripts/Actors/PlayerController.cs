@@ -77,6 +77,13 @@ public class PlayerController : MonoBehaviour {
             interact.gameObject.SetActive(false);
             fishManager.fishing(other.gameObject);
         }
+
+        if (other.CompareTag("Cinema") && Input.GetKeyDown(KeyCode.E))
+        {
+            interact.gameObject.SetActive(false);
+            manager.difficulty = UnityEngine.Random.Range(2, 4);
+            manager.QTE(other.gameObject);
+        }
     }
 
     private void objectToUI(GameObject obj)
